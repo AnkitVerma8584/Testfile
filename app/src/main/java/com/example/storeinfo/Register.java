@@ -39,7 +39,7 @@ public class Register extends AppCompatActivity {
                 up = regp.getText().toString().trim();
                 if (un.equals("") || up.equals("")) {
                     Toast.makeText(getApplicationContext(), "Username or Password cannot be empty", Toast.LENGTH_LONG).show();
-                } else if(check(un))
+                } else if(!check(un))
                 {
                     save(un, up);
                 }
@@ -74,24 +74,7 @@ public class Register extends AppCompatActivity {
                 }
     }
     public boolean check(String un)
-    {
-        boolean t=true;
-        FileInputStream fis=null;
-        try{
-            fis=openFileInput(un);
-        }
-        catch (FileNotFoundException e)
-        { return true;
-        }
-        finally {
-            try {
-                fis.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-      return t;
-    }
+    { return (new File(getFilesDir(),un).exists()); }
 }
 
 

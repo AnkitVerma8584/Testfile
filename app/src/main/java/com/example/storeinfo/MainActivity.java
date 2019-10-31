@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -41,18 +42,26 @@ public class MainActivity extends AppCompatActivity {
                 up=pass.getText().toString().trim();
 
 
+                    if(check(un)) {
+                        if (getcheck(un, up)) {
+                            st = un + "/" + up;
+                            Intent it = new Intent(MainActivity.this, Login.class);
+                            it.putExtra("Username", st);
+                            startActivity(it);
+                        }
+                        else
+                            Toast.makeText(getApplicationContext(),"Wrong Password",Toast.LENGTH_LONG).show();
 
-                    st=un+"/"+up;
-                    Intent it =new Intent (MainActivity.this,Login.class);
-                    it.putExtra("Username",st);
-                    startActivity(it);
 
-                if(getcheck(up,un))
-                {
-                    Toast.makeText(getApplicationContext(),"Wrong Password",Toast.LENGTH_LONG).show();
-                    user.setText(null);
-                    pass.setText(null);
-                }
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(),"Username does not exists",Toast.LENGTH_LONG).show();
+                        user.setText("");
+                        pass.setText("");
+                    }
+
+
             }
         });
         reg.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+    public boolean check(String un)
+    {
+        boolean checkit=new File(getFilesDir(),un).exists();
+        return checkit;
     }
     public boolean getcheck(String n,String p)
     { boolean t=false;
