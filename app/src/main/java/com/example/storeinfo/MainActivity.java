@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
     Button login,reg;
 
     EditText user,pass;
-    String st="",up="",un="";
+    String up="",un="";
+    static String st="";
     public static String need;
 
     @Override
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                         if (getcheck(un, up)) {
                             st = un + "/" + up;
                             Intent it = new Intent(MainActivity.this, Login.class);
-                            it.putExtra("Username", st);
+                            it.putExtra(st, st);
                             startActivity(it);
                         }
                         else
