@@ -54,7 +54,7 @@ public class Login extends AppCompatActivity {
         reset1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               m3();
+                m3();
             }
         });
     }
@@ -66,7 +66,7 @@ public class Login extends AppCompatActivity {
     }
     public void m2()
     {
-        Intent it=new Intent(Login.this,Add.class);
+        Intent it=new Intent(Login.this,Addinfo.class);
         it.putExtra(name,name);
         startActivity(it);
     }
@@ -93,11 +93,12 @@ public class Login extends AppCompatActivity {
             ch = sb.toString();
 
             if (a.equals(ch)) {
-                PrintWriter pw = new PrintWriter(un);
-                pw.print("");
-                pw.close();
-                fos = openFileOutput(un,MODE_APPEND);
+                fos = openFileOutput(un,0);
                 fos.write(b.getBytes());
+                Toast.makeText(this,"Password has been reset",Toast.LENGTH_LONG).show();
+                o.setVisibility(View.INVISIBLE);
+                n.setVisibility(View.INVISIBLE);
+                reset1.setVisibility(View.INVISIBLE);
             } else
             {
                 Toast.makeText(getApplicationContext(),"Wrong Password",Toast.LENGTH_LONG).show();

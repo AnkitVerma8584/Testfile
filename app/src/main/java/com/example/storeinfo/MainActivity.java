@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     EditText user,pass;
     String up="",un="";
     static String st="";
-    public static String need;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,24 +43,24 @@ public class MainActivity extends AppCompatActivity {
                 up=pass.getText().toString().trim();
 
 
-                    if(check(un)) {
-                        if (getcheck(un, up)) {
-                            st = un + "/" + up;
-                            Intent it = new Intent(MainActivity.this, Login.class);
-                            it.putExtra(st, st);
-                            startActivity(it);
-                        }
-                        else
-                            Toast.makeText(getApplicationContext(),"Wrong Password",Toast.LENGTH_LONG).show();
-
-
+                if(check(un)) {
+                    if (getcheck(un, up)) {
+                        st = un + "/" + up;
+                        Intent it = new Intent(MainActivity.this, Login.class);
+                        it.putExtra(st, st);
+                        startActivity(it);
                     }
                     else
-                    {
-                        Toast.makeText(getApplicationContext(),"Username does not exists",Toast.LENGTH_LONG).show();
-                        user.setText("");
-                        pass.setText("");
-                    }
+                        Toast.makeText(getApplicationContext(),"Wrong Password",Toast.LENGTH_LONG).show();
+
+
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Username does not exists",Toast.LENGTH_LONG).show();
+                    user.setText("");
+                    pass.setText("");
+                }
 
 
             }

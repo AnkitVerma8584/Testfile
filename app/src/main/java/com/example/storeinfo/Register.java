@@ -1,23 +1,16 @@
 package com.example.storeinfo;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
 
 public class Register extends AppCompatActivity {
     EditText regu, regp;
@@ -53,8 +46,11 @@ public class Register extends AppCompatActivity {
 
     void save(String un, String up) {
         FileOutputStream fos = null;
+        FileOutputStream fos2=null;
+        String tt=un+"/"+up;
         try {
             fos = openFileOutput(un,MODE_APPEND);
+            fos2=openFileOutput(tt,MODE_APPEND);
             fos.write(up.getBytes());
             regu.setText("");
             regp.setText("");
@@ -71,6 +67,14 @@ public class Register extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
+                    if(fos2!=null) {
+                         try {
+                               fos2.close();
+                          } catch (IOException e) {
+                                 e.printStackTrace();
+                                }
+                         }
+
                 }
     }
     public boolean check(String un)
