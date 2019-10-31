@@ -19,48 +19,62 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 public class Login extends AppCompatActivity {
-    Button view,add,reset;
+    Button view1,add1,reset1;
     TextView t1;
     EditText o,n;
-    String name,op,np,un;
-
+    String op,np,un;
+    static String name="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        view=findViewById(R.id.view);
-        add=findViewById(R.id.add);
-        reset=findViewById(R.id.reset);
+        view1=findViewById(R.id.view);
+        add1=findViewById(R.id.edit);
+        reset1=findViewById(R.id.reset);
         t1=findViewById(R.id.welcome);
-        o.findViewById(R.id.op);
+        o=findViewById(R.id.op);
         n=findViewById(R.id.np);
-        name=getIntent().getExtras().getString("Username");
+        Intent intent =getIntent();
+        name=(intent.getStringExtra(MainActivity.st));
+        name.trim();
         un=name.substring(0,name.indexOf('/'));
         t1.setText("Welcome "+un);
-        view.setOnClickListener(new View.OnClickListener() {
+        view1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(Login.this,Viewinfo.class);
-                it.putExtra("password",name);
-                startActivity(it);
+                m1();
             }
         });
-        add.setOnClickListener(new View.OnClickListener() {
+        add1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(Login.this,Add.class);
-                it.putExtra("password",name);
-                startActivity(it);
+                m2();
             }
         });
-        reset.setOnClickListener(new View.OnClickListener() {
+        reset1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                op=o.getText().toString();
-                np=n.getText().toString();
-                Reset(op,np,un);
+               m3();
             }
         });
+    }
+    public void m1()
+    {
+        Intent it=new Intent(Login.this,Viewinfo.class);
+        it.putExtra(name,name);
+        startActivity(it);
+    }
+    public void m2()
+    {
+        Intent it=new Intent(Login.this,Add.class);
+        it.putExtra(name,name);
+        startActivity(it);
+    }
+    public void m3()
+    {
+        op=o.getText().toString();
+        np=n.getText().toString();
+        Reset(op,np,un);
     }
     public void Reset(String a,String b,String un)
     {
