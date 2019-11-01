@@ -34,7 +34,10 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Username or Password cannot be empty", Toast.LENGTH_LONG).show();
                 } else if(!check(un))
                 {
-                    save(un, up);
+                    save1(un, up);
+                    Toast.makeText(getApplicationContext(),"Saved to "+getFilesDir()+"/"+un,Toast.LENGTH_LONG).show();
+                    String s=un+"-"+up;
+                    save1(s,"");
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Username already taken", Toast.LENGTH_LONG).show();
@@ -44,22 +47,18 @@ public class Register extends AppCompatActivity {
         });
     }
 
-    void save(String un, String up) {
+    void save1(String un, String up) {
         FileOutputStream fos = null;
-        FileOutputStream fos2=null;
-        String tt=un+"/"+up;
         try {
             fos = openFileOutput(un,MODE_APPEND);
-            fos2=openFileOutput(tt,MODE_APPEND);
             fos.write(up.getBytes());
             regu.setText("");
             regp.setText("");
-            Toast.makeText(this,"Saved to "+getFilesDir()+"/"+un,Toast.LENGTH_LONG).show();
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
+
                 } catch (IOException e) {
                     e.printStackTrace();
-                } finally {
+                }
+        finally {
                     if(fos!=null) {
                         try {
                             fos.close();
@@ -67,15 +66,7 @@ public class Register extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    if(fos2!=null) {
-                         try {
-                               fos2.close();
-                          } catch (IOException e) {
-                                 e.printStackTrace();
-                                }
-                         }
-
-                }
+        }
     }
     public boolean check(String un)
     { return (new File(getFilesDir(),un).exists()); }

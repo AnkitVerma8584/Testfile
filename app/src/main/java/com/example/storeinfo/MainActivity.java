@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(check(un)) {
                     if (getcheck(un, up)) {
-                        st = un + "/" + up;
+                        st = un + "-" + up;
                         Intent it = new Intent(MainActivity.this, Login.class);
                         it.putExtra(st, st);
                         startActivity(it);

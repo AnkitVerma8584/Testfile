@@ -15,33 +15,36 @@ import java.io.IOException;
 
 public class Addinfo extends AppCompatActivity {
     Button sv;
-    EditText nm, dpt, roll, info;
-    static String pss;
-    String name, dept, rno, in;
+    EditText nm, dpt, roll, inf;
+    public static String pss;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addinfo);
-        nm.findViewById(R.id.name);
-        dpt = findViewById(R.id.dept);
-        roll = findViewById(R.id.rollno);
-        info = findViewById(R.id.info);
         sv = findViewById(R.id.save);
+        nm = findViewById(R.id.name);
+        roll = findViewById(R.id.rollno);
+        dpt = findViewById(R.id.dept);
+        inf = findViewById(R.id.info);
         Intent intent = getIntent();
-        pss = (intent.getStringExtra(Login.name));
+        pss = (intent.getStringExtra(MainActivity.st));
         sv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getinformation();
             }
         });
+
     }
+
     void getinformation() {
-        name = nm.getText().toString().trim();
-        dept = dpt.getText().toString().trim();
-        rno = roll.getText().toString().trim();
-        in = info.getText().toString().trim();
+        final String name = nm.getText().toString().trim();
+        final String dept = dpt.getText().toString().trim();
+        final String rno = roll.getText().toString().trim();
+        final String in = inf.getText().toString().trim();
         if (name.equals(null) || dept.equals(null) || rno.equals(null) || in.equals(null)) {
             Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_LONG).show();
             return;
@@ -53,7 +56,7 @@ public class Addinfo extends AppCompatActivity {
         nm.setText("");
         roll.setText("");
         dpt.setText("");
-        info.setText("");
+        inf.setText("");
     }
 
     void save(String name, String dept, String roll, String info) {
@@ -83,5 +86,6 @@ public class Addinfo extends AppCompatActivity {
                 }
             }
         }
+
     }
 }

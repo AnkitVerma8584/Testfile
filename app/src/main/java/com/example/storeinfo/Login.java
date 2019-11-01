@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
         Intent intent =getIntent();
         name=(intent.getStringExtra(MainActivity.st));
         name.trim();
-        un=name.substring(0,name.indexOf('/'));
+        un=name.substring(0,name.indexOf('-'));
         t1.setText("Welcome "+un);
         view1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +96,7 @@ public class Login extends AppCompatActivity {
                 fos = openFileOutput(un,0);
                 fos.write(b.getBytes());
                 Toast.makeText(this,"Password has been reset",Toast.LENGTH_LONG).show();
+                newpass(b);
                 o.setVisibility(View.INVISIBLE);
                 n.setVisibility(View.INVISIBLE);
                 reset1.setVisibility(View.INVISIBLE);
@@ -126,6 +127,46 @@ public class Login extends AppCompatActivity {
                 }
             }
         }
+    }
+    public void newpass(String np)
+    {   final String t=getback();
+        FileOutputStream fos = null;
+        try {
+            fos = openFileOutput(np,MODE_APPEND);
+            fos.write(t.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if(fos!=null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    public String getback()
+    {
+        FileInputStream fis=null;
+        String u="";
+        try {
+            fis=openFileInput(name);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br=new BufferedReader(isr);
+            StringBuilder sb=new StringBuilder();
+            String text;
+            while((text=br.readLine())!=null) {
+                u=u+"\n"+text;
+            }
+
+            fis.close();
+
+        }
+        catch(Exception e)
+        {}
+        return u;
     }
 
 }
