@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,25 +42,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 un=user.getText().toString().trim();
                 up=pass.getText().toString().trim();
-
-
-                if(check(un)) {
-                    if (getcheck(un, up)) {
-                        st = un + "-" + up;
-                        Intent it = new Intent(MainActivity.this, Login.class);
-                        it.putExtra(st, st);
-                        startActivity(it);
-                    }
-                    else
-                        Toast.makeText(getApplicationContext(),"Wrong Password",Toast.LENGTH_LONG).show();
-
-
-                }
-                else
+                if(un.equals("")||up.equals(""))
                 {
-                    Toast.makeText(getApplicationContext(),"Username does not exists",Toast.LENGTH_LONG).show();
-                    user.setText("");
-                    pass.setText("");
+                    Toast.makeText(getApplicationContext(),"Username or password cannot be empty",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    if (check(un)) {
+                        if (getcheck(un, up)) {
+                            st = un + "-" + up;
+                            Intent it = new Intent(MainActivity.this, Login.class);
+                            it.putExtra(st, st);
+                            startActivity(it);
+                            user.setText("");
+                            pass.setText("");
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
+                            pass.setText("");
+                        }
+
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Username does not exists", Toast.LENGTH_LONG).show();
+                        user.setText("");
+                        pass.setText("");
+                    }
                 }
 
 
@@ -112,5 +118,22 @@ public class MainActivity extends AppCompatActivity {
         }
         return t;
     }
+    boolean t=false;
+    @Override
+    public void onBackPressed() {
+        if(t==true)
+            super.onBackPressed();
+            else {
+            t = true;
+            Toast.makeText(this,"Press back again to exit",Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    t=false;
+                }
+            },5000);
+        }
 
+    }
 }
+

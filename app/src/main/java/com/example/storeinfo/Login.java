@@ -1,7 +1,9 @@
 package com.example.storeinfo;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -166,5 +168,27 @@ public class Login extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        androidx.appcompat.app.AlertDialog.Builder alt=new androidx.appcompat.app.AlertDialog.Builder(this);
+        alt.setTitle("Attention!")
+                .setCancelable(false)
+                .setMessage("Do you want to Logout?")
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Login.super.onBackPressed();
+                    }
+                });
+        AlertDialog a=alt.create();
+        a.show();
     }
 }

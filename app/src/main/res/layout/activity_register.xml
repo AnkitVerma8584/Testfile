@@ -5,47 +5,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Register">
+
     <EditText
         android:id="@+id/regu"
-        android:layout_width="233dp"
-        android:layout_height="70dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="128dp"
         android:ems="10"
         android:hint="Create a Username"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.101" />
 
     <TextView
         android:id="@+id/details"
-        android:layout_width="350dp"
-        android:layout_height="99dp"
+        android:layout_width="319dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="16dp"
         android:text="Enter the following details to register."
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/regp"
-        android:layout_width="232dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="228dp"
         android:ems="10"
         android:hint="Create a Password"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/regu"
-        app:layout_constraintTop_toBottomOf="@+id/regu" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.033" />
 
     <Button
         android:id="@+id/reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="376dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="352dp"
         android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
