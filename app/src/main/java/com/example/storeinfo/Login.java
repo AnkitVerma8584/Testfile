@@ -75,6 +75,8 @@ public class Login extends AppCompatActivity {
         op=o.getText().toString();
         np=n.getText().toString();
         Reset(op,np,un);
+        Toast.makeText(this,"Login again",Toast.LENGTH_SHORT).show();
+        super.onBackPressed();
     }
     public void Reset(String a,String b,String un)
     {
@@ -96,6 +98,7 @@ public class Login extends AppCompatActivity {
                 fos = openFileOutput(un,0);
                 fos.write(b.getBytes());
                 Toast.makeText(this,"Password has been reset",Toast.LENGTH_LONG).show();
+                b=un+"-"+b;
                 newpass(b);
                 o.setVisibility(View.INVISIBLE);
                 n.setVisibility(View.INVISIBLE);
@@ -129,11 +132,28 @@ public class Login extends AppCompatActivity {
         }
     }
     public void newpass(String np)
-    {   final String t=getback();
+    {
+        FileInputStream fis=null;
         FileOutputStream fos = null;
+        String u="";
+        try {
+            fis=openFileInput(name);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br=new BufferedReader(isr);
+            StringBuilder sb=new StringBuilder();
+            String text;
+            while((text=br.readLine())!=null) {
+                u=u+"\n"+text;
+            }
+            fis.close();
+        }
+        catch(Exception e)
+        {e.printStackTrace();}
+
         try {
             fos = openFileOutput(np,MODE_APPEND);
-            fos.write(t.getBytes());
+            fos.write(u.getBytes());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -147,26 +167,4 @@ public class Login extends AppCompatActivity {
             }
         }
     }
-    public String getback()
-    {
-        FileInputStream fis=null;
-        String u="";
-        try {
-            fis=openFileInput(name);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br=new BufferedReader(isr);
-            StringBuilder sb=new StringBuilder();
-            String text;
-            while((text=br.readLine())!=null) {
-                u=u+"\n"+text;
-            }
-
-            fis.close();
-
-        }
-        catch(Exception e)
-        {}
-        return u;
-    }
-
 }
