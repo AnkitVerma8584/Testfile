@@ -24,12 +24,12 @@
         android:id="@+id/view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="100dp"
         android:text="View info"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -39,11 +39,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="345dp"
         android:text="Reset Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.012"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -52,7 +52,7 @@
         android:id="@+id/edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
+        android:layout_marginStart="138dp"
         android:layout_marginTop="100dp"
         android:text="Add info"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +67,7 @@
         android:layout_width="286dp"
         android:layout_height="47dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="232dp"
+        android:layout_marginTop="220dp"
         android:ems="10"
         android:hint="Enter old password"
         android:inputType="textPersonName"
@@ -82,28 +82,27 @@
         android:id="@+id/np"
         android:layout_width="288dp"
         android:layout_height="45dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="276dp"
         android:ems="10"
         android:hint="Enter new Password"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.523" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="100dp"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/detail"
@@ -122,14 +121,16 @@
 
     <TextView
         android:id="@+id/searchinfo"
-        android:layout_width="312dp"
-        android:layout_height="171dp"
+        android:layout_width="352dp"
+        android:layout_height="176dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="396dp"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.962" />
+        app:layout_constraintVertical_bias="0.483" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

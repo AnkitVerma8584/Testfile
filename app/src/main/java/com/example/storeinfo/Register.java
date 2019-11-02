@@ -38,6 +38,7 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Saved to "+getFilesDir()+"/"+un,Toast.LENGTH_LONG).show();
                     String s=un+"-"+up;
                     save1(s,"");
+                    Register.super.onBackPressed();
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Username already taken", Toast.LENGTH_LONG).show();

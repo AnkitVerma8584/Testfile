@@ -27,6 +27,7 @@ public class Login extends AppCompatActivity {
     EditText o, n, det;
     String op, np, un;
     static String name = "";
+    boolean t=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class Login extends AppCompatActivity {
         det = findViewById(R.id.detail);
         o.setVisibility(View.INVISIBLE);
         n.setVisibility(View.INVISIBLE);
+        det.setVisibility(View.INVISIBLE);
         Intent intent = getIntent();
         name = (intent.getStringExtra(MainActivity.st));
         name.trim();
@@ -75,19 +77,24 @@ public class Login extends AppCompatActivity {
         srh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                m0();
+                if(t)
+                    m0();
+                else
+                {
+                    det.setVisibility(View.VISIBLE);
+                    t=true;
+                }
             }
         });
     }
     public void m0()
-    {
+    {char ch;
         String str = det.getText().toString().trim();
-        v.setText(str);
         if (str.equals("")) {
             Toast.makeText(getApplicationContext(), "Field cannot be empty", Toast.LENGTH_SHORT).show();
         } else {
-            char ch = str.charAt(0);
-            if (ch >= '0' && ch <= '9')
+            ch = str.charAt(0);
+            if (ch>='0' && ch<='9')
                 searchroll(str);
             else
                 searchname(str);
