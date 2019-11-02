@@ -1,4 +1,4 @@
-package com.example.storeinfo;
+package com.example.info;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,9 +17,6 @@ public class Addinfo extends AppCompatActivity {
     Button sv;
     EditText nm, dpt, roll, inf,ph;
     public static String pss;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +61,7 @@ public class Addinfo extends AppCompatActivity {
 
     void save(String name, String dept, String roll, String info,String phone) {
         name = "Name : " + name + "\n";
-        roll = "Roll no. : "+ roll + "\n";
+        roll = "Roll no. : " + roll + "\n";
         dept = "Department : " + dept + "\n";
         phone="Phone : "+phone+"\n";
         info = "Address : " + info + "\n\n\n";
