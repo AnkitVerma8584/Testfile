@@ -24,8 +24,8 @@ import java.io.PrintWriter;
 public class Login extends AppCompatActivity {
     Button view1, add1, reset1, srh;
     TextView t1, v;
-    EditText o, n, det;
-    String op, np, un;
+    EditText det;
+
     static String name = "";
     boolean t=false;
 
@@ -39,17 +39,14 @@ public class Login extends AppCompatActivity {
         srh = findViewById(R.id.search);
         t1 = findViewById(R.id.welcome);
         v = findViewById(R.id.searchinfo);
-        o = findViewById(R.id.op);
-        n = findViewById(R.id.np);
+
         det = findViewById(R.id.detail);
-        o.setVisibility(View.INVISIBLE);
-        n.setVisibility(View.INVISIBLE);
+
         det.setVisibility(View.INVISIBLE);
         Intent intent = getIntent();
         name = (intent.getStringExtra(MainActivity.st));
         name.trim();
-        un = name.substring(0, name.indexOf('-'));
-        t1.setText("Welcome " + un);
+        t1.setText("Welcome " + name.substring(0, name.indexOf('-')));
         view1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,13 +62,9 @@ public class Login extends AppCompatActivity {
         reset1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String s = reset1.getText().toString();
-                if (s.equals("Reset Password")) {
-                    o.setVisibility(View.VISIBLE);
-                    n.setVisibility(View.VISIBLE);
-                    reset1.setText("Reset");
-                } else
-                    m3();
+                Intent it =new Intent(Login.this,Reset.class);
+                it.putExtra("Name",name);
+                startActivity(it);
             }
         });
         srh.setOnClickListener(new View.OnClickListener() {
@@ -113,103 +106,11 @@ public class Login extends AppCompatActivity {
         startActivity(it);
     }
 
-    public void m3() {
-        op = o.getText().toString();
-        np = n.getText().toString();
-        if (op.equals("") || np.equals("")) {
-            Toast.makeText(this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-            Reset(op, np, un);
-        }
-    }
 
-    public void Reset(String a, String b, String un) {
-        FileInputStream fis = null;
-        FileOutputStream fos = null;
-        try {
-            fos = openFileOutput(un, MODE_APPEND);
-            fis = openFileInput(un);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String text, ch = "";
-            while ((text = br.readLine()) != null) {
-                sb.append(text).append("");
-            }
-            ch = sb.toString();
 
-            if (a.equals(ch)) {
-                fos = openFileOutput(un, 0);
-                fos.write(b.getBytes());
-                Toast.makeText(this, "Password has been reset", Toast.LENGTH_LONG).show();
-                b = un + "-" + b;
-                Toast.makeText(this, "Login again", Toast.LENGTH_SHORT).show();
-                super.onBackPressed();
-                newpass(b);
-                o.setVisibility(View.INVISIBLE);
-                n.setVisibility(View.INVISIBLE);
-                reset1.setVisibility(View.INVISIBLE);
-            } else {
-                Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
-                o.setText("");
-                return;
-            }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                fis.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
-    public void newpass(String np) {
-        FileInputStream fis = null;
-        FileOutputStream fos = null;
-        String u = "";
-        try {
-            fis = openFileInput(name);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String text;
-            while ((text = br.readLine()) != null) {
-                u = u + "\n" + text;
-            }
-            fis.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        try {
-            fos = openFileOutput(np, MODE_APPEND);
-            fos.write(u.getBytes());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
     @Override
     public void onBackPressed() {
